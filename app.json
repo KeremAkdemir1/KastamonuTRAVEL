@@ -1,33 +1,46 @@
 {
   "expo": {
-    "name": "KastamonuTravel",
+    "name": "Kastamonu Travel Guide",
     "slug": "KastamonuTravel",
-    "version": "1.0.0",
+    "version": "2.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpg",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "**/*"  
     ],
     "ios": {
-      "supportsTablet": true
+      "buildNumber": "7",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kastamonubelediyesi.KastamonuTravel",
+      "config": {
+        "googleMapsApiKey": "AIzaSyBsPB8U5HIe2GG2uDB88tpEhMyWRsBLy24" 
+      }
     },
     "android": {
+      "package": "com.kastamonubelediyesi.KastamonuTravel",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBsPB8U5HIe2GG2uDB88tpEhMyWRsBLy24"
+          }    
+       },
+      "versionCode": 18,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#46d9bf"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    
+    "extra": {
+      "eas": {
+        "projectId": "32cdd0f9-aa61-4c60-be5c-9bc9b5fa1a1e"
+      }
     }
   }
 }
