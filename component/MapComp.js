@@ -104,6 +104,8 @@ const renderMark = () =>{
           showsUserLocation
           >
             {list.map((element, index) => {
+            if(element.latitude !== null){
+
             
             return (
               <Marker
@@ -127,6 +129,8 @@ const renderMark = () =>{
                 </Marker>
 
             )
+          }
+         
           })}
         </MapView>
       </View>
@@ -354,7 +358,7 @@ const styles = StyleSheet.create({
   hepsiItem: {
     backgroundColor: "transparent",
     top:10,
-    height:47,
+    height:50,
     marginLeft:10,
     borderRadius:30,
   },

@@ -134,7 +134,7 @@ const Itemdetail = ({ route }) => {
 
 
     return (
-        <SafeAreaView>
+        <View>
             <View style={styles.topbarView}>
                 <View style={styles.rectangleView} />
                 <Text style={styles.titleText}> {route.params?.itemtitle.substring(0, 20)}...</Text>
@@ -259,28 +259,28 @@ const Itemdetail = ({ route }) => {
                         <AutoHeightWebView
                             containerStyle={{ opacity: 0.99, top: -60 }}
                             customStyle={`
-                                * {
-                                    
-                                    
-                            }                              
                             p {
-                              width: 95% !important;
-                              font-size: 20px !important;
-                              margin: 0 auto
-                            }
-                            p > img {
-                              width: 95% !important;
-                                height:auto !important;
-                            }
-                            span {
-                                font-size:20px !important;
-                                font-family: "Times New Roman", Times, serif !important;
-                            }
-
-                            img {
                                 width: 95% !important;
-                                height:auto !important;
-                            }
+                                font-size: 20px !important;
+                                text-indent: -1px !important;
+                                margin: 0 auto !important;
+                              }
+                              p > img {
+                                  width: 95% !important;
+                                  height:auto !important;
+                                  margin: 0 auto !important;
+                              }
+                              span {
+                                  font-size:20px !important;
+                                  font-family: "Times New Roman", Times, serif !important;
+                                  text-indent: -10px !important;
+                              }
+    
+                              img {
+                                 display: block !important;
+                                  width: 95% !important;
+                                  height:auto !important;
+                              }
 
                                 `}
                             source={{ html: route.params?.itemcontent + `<div style="height:100px">.</div>` }}
@@ -296,26 +296,30 @@ const Itemdetail = ({ route }) => {
                     <AutoHeightWebView
                         containerStyle={{ opacity: 0.99, top: -60 }}
                         customStyle={`
-                                p {
-                                    display: block;
-                                    width: 95% !important;
-                                    font-size: 20px !important;
-                                    margin: 0 auto
-                                  }
-                                  p > img {
-                                    width: 95% !important;
-                                      height:auto !important;
-                                  }
-                                  span {
-                                      font-size:20px !important;
-                                      font-family: "Times New Roman", Times, serif !important;
-                                  }
-      
-                                  img {
-                                     display: block !important;
-                                      width: 95% !important;
-                                      height:auto !important;
-                                  }
+                        p {
+                            width: 95% !important;
+                            font-size: 20px !important;
+                            text-indent: -1px !important;
+                            margin: 0 auto !important;
+                            word-break:break-all
+                          }
+                          p > img {
+                              width: 95% !important;
+                              height:auto !important;
+                              margin: 0 auto !important;
+                          }
+                          span {
+                              font-size:20px !important;
+                              font-family: "Times New Roman", Times, serif !important;
+                              word-break: break-word;
+                              text-indent: -10px !important;
+                          }
+
+                          img {
+                             display: block !important;
+                              width: 95% !important;
+                              height:auto !important;
+                          }
 
                                 `}
                         source={{ html: route.params?.itemcontent + `<div style="height:100px">.</div>` }}
@@ -329,7 +333,7 @@ const Itemdetail = ({ route }) => {
                 }
             </ScrollView>
 
-        </SafeAreaView>
+        </View>
 
     );
 }

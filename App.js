@@ -1,11 +1,11 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, View,LogBox, Dimensions,ImageBackground} from 'react-native';
+import {StyleSheet, View,LogBox, Dimensions,ImageBackground, SafeAreaView} from 'react-native';
 import {useState,useEffect} from 'react'
 import  I18n from 'i18n-js';
 import Route from './route/Route'
 import {Text,Image} from 'react-native'
 import { useFonts } from "expo-font";
-import { tr,en } from './localization/Translations';
+import { tr,de,ru,ar,en } from './localization/Translations';
 import * as Localization from 'expo-localization';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -28,7 +28,7 @@ export default function App() {
     }, [])
     let [locale ,setLocale] = useState(Localization.locale)
     I18n.fallbacks = true;
-    I18n.translations = { tr,en };
+    I18n.translations = { tr,ar,ru,de,en };
     I18n.locale = locale
     let [fontsLoaded] = useFonts({
         'Futura-Bold': require("./assets/fonts/Jost-VariableFont_wght.ttf"),
@@ -99,7 +99,8 @@ export default function App() {
       }
      const RenderIntro = () => {
         if (state.showRealApp) {
-            return <Route/>;
+
+            return(<SafeAreaView style={{flex:1}}><Route/></SafeAreaView>);
           } else {
             return <AppIntroSlider renderItem={renderItem} data={slides} onDone={onDone} renderNextButton={renderNextButton} showSkipButton={true} renderSkipButton={renderPrevButton} renderDoneButton={renderDoneButton} />;
           }

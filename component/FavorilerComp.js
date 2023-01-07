@@ -99,7 +99,7 @@ const getFavorites = () => {
           <Text style={styles.titleText}>
             {item.title}
           </Text>
-           <Text style={{top:30,left:5,fontFamily:'sans-serif-condensed',fontSize:16}}>
+           <Text style={{top:40,left:5,fontFamily:'sans-serif-condensed',fontSize:16}}>
             {item.smallcontent}
            </Text>
         </View>
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 6,
-    fontSize: 17,
+    fontSize: 15,
     fontFamily: "Futura-Bold",
     fontWeight: 'bold',
     color: "#000",

@@ -222,6 +222,7 @@ const getFavorites = () => {
     )
 }
 const styles = StyleSheet.create({
+  
   submit: {
     marginTop: 10,
     paddingTop: 12,
@@ -259,7 +260,7 @@ submitText: {
     color: '#000000',
     textAlign: 'center',
     fontFamily:'Futura-Bold',
-    fontSize:16,
+    fontSize:20,
     fontWeight: 'bold',
     height:30
 },
@@ -268,7 +269,7 @@ submitClickedText: {
   textAlign: 'center',
   fontFamily:'Futura-Bold',
   fontWeight: 'bold',
-  fontSize:16,
+  fontSize:20,
   height:30
 },
 categoryItem: {

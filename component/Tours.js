@@ -83,106 +83,298 @@ const Tours = () => {
             }).catch(error => console.log(error))
         }
     }
-    const renderItem = ({item}) => (
-        
-        <View style={styles.container}>
-        <Pressable style={{zIndex:99}} onPress={item.detailview == 1 ? () => navigation.navigate({ name: 'ItemDetail', params: { itemtitle: item.title, itemcontent: item.content,longitude:item.longtitude,latitude:item.latitude,itemphone: item.phone,itemAttachment:item.attachmentList,youtube: item.youtube,address: item.additional,itemid:item.id,aciliskapanis: item.acilis + ' / ' + item.kapanis,smallcontent: item.smallcontent } }): () => goToMap(item.latitude,item.longtitude,item.title)}>
-            <View style={styles.tourCard}>
 
-                    <View style={styles.backgroundRectangle}/>
-                    <Image
-                        style={styles.photo}
-                        resizeMode="cover"
-                        source={{uri : "https://kastamonutravelguide.com/" + item.path}}
-                    />
-                     <Pressable style={{zIndex:99}} onPress={() => AddFavorites(item.id)}>
-                <Image
-                source={favorite.includes(item.id) ? require('../assets/likeButton.png') : require('../assets/likeButtonInactive.png')}
-                style={{width:50,height:50,left:-20}}
-                />
-                </Pressable>
-                    <View style={styles.textContent}>
-                        <Text style={styles.titleText}> {item.title.substring(0,23)}...</Text>
-                        <Text style={{top:60,width:Dimensions.get('screen').width / 2 - 60,fontSize:14,left:Dimensions.get('screen').width /2 - 230,height:120,fontFamily:'Times New Roman'}}>{item.smallcontent}</Text>
-                    </View>
-                
-            </View>
-            </Pressable>
-        </View>
-    );
 
     return (
     
         
         <FlatList
-        contentContainerStyle={{
-            alignItems: 'flex-start',
-            justifyContent: "space-around",
-            paddingTop:20,
-            paddingBottom: 80
-        }}
-        style={[styles.flatList]}
+        contentContainerStyle={{ paddingBottom: 150 }}
         data={postData}
+
+        style={styles.flat}
         showsVerticalScrollIndicator={false}
-        renderItem={renderItem}
+        renderItem={({ item }) => (
+          <View style={styles.container}>
+                          <Pressable style={{zIndex:100}} onPress={() => navigation.navigate({ name: 'ItemDetail', params: { itemtitle: item.title, itemcontent: item.content,longitude:item.longtitude,latitude:item.latitude,itemphone: item.phone,itemAttachment:item.attachmentList,youtube: item.youtube,address: item.additional,itemid:item.id,aciliskapanis: item.acilis + ' / ' + item.kapanis,smallcontent: item.smallcontent  } })}>
+            <View style={styles.tourCard}>
+            <Pressable style={{width:45,zIndex:99,left:Dimensions.get('screen').width - 70}} onPress={() => AddFavorites(item.id)}>
+                <Image
+                source={favorite.includes(item.id) ? require('../assets/likeButton.png') : require('../assets/likeButtonInactive.png')}
+                style={{width:50,height:50,position:'absolute'}}
+                />
+                </Pressable>
+                <View style={styles.backgroundRectangle} />
+                <Image
+                  style={styles.photo}
+                  resizeMode="cover"
+                  source={{ uri:"https://kastamonutravelguide.com/" + item.path}}
+                />
+                <View style={styles.textContent}>
+                  <Text style={styles.titleText}>{item.title.length >  20 ? item.title.substring(0,20) + '...': item.title}</Text>
+                  <View style={styles.webView}>
+                    <Text style={{fontFamily:'sans-serif-condensed'}}> { item.category_name == "Restoran" || item.category_name == "Otel" ? item.additional + '/' + item.ilce_adi : item.smallcontent}</Text>
+                  </View>
+                </View>
+            </View>
+            </Pressable>
+          </View>
+        )}
         keyExtractor={item => item.id}
-        vertical={true}
         overScrollMode="never"
         ItemSeparatorComponent={() => {
-            return (
-                <View
-                    style={{
-                        width: "100%",
-                        height: 20,
-                    }} />
-            );
+          return (
+            <View
+              style={{
+                width: "100%",
+                height: 20,
+              }} />
+          );
         }}
-    />
+      />
    
     
         )
 }
 const htmlStyles = { p: {top: -20} }
 const styles = StyleSheet.create({
-    tourCard: {
+    hepsisubmitClicked: {
+        marginTop: 10,
+        paddingTop: 12,
+        paddingBottom: 12,
+        backgroundColor: '#fff',
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowRadius: 6,
+        width:90,
+        left:10,
+        height:45,
+        elevation: 6,
+        shadowOpacity: 1,
+        borderRadius:30 
+      },
+      hepsiAllSubmit: {
+        paddingTop: 12,
+        paddingBottom: 12,
+        width:90,
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowRadius: 6,
+        elevation: 6,
+        shadowOpacity: 1,
+        borderRadius:30,
+      },
+      categoriesView: {
+        position: "relative",
+        width: 431,
+        height: 60,
+        flexShrink: 0,
+        top:-30
+      },
+      hepsiItem: {
+        backgroundColor: "transparent",
+        height:45,
+        width:130,
+        left:15,
+        top: 10,
+        borderRadius: 30
+      },
+      hepsisItem: {
+        backgroundColor: "transparent",
+        height:45,
+        width:90,
+        top: 10,
+        left:10,
+        borderRadius: 30
+      },
+      categoriesScrollview: {
+        position: "absolute",
+        top: 1,
+        marginTop: 5,
+        left: 0,
+        width: "100%",
+        paddingBottom: 20
+      },
+      submit: {
+        marginTop: 10,
+        paddingTop: 16,
+        marginLeft: 10,
+        paddingBottom: 10,
+        backgroundColor: '#fff',
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 6,
+        elevation: 6,
+        shadowOpacity: 1,
+        borderRadius: 30
+      },
+      allSubmit: {
+        marginTop: 10,
+        paddingTop: 16,
+        marginLeft: 10,
+        paddingBottom: 16,
+        backgroundColor: '#fff',
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 6,
+        elevation: 6,
+        shadowOpacity: 1,
+        borderRadius: 30
+      },
+      hepsiSubmit: {
+        paddingTop: 16,
+        paddingBottom: 16,
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 6,
+        elevation: 6,
+        shadowOpacity: 1,
+        borderRadius: 30
+    
+      },
+      hepsisSubmit: {
+        paddingTop: 16,
+        paddingBottom: 16,
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 6,
+        elevation: 6,
+        shadowOpacity: 1,
+        width:130,
+        borderRadius: 30
+    
+      },
+      submitText: {
+        color: '#000000',
+        textAlign: 'center',
+        fontFamily:'Futura-Bold',
+        fontWeight: 'bold',
+        top:-3
+      },
+      hepsitsubmitText: {
+        color: '#000000',
+        textAlign: 'center',
+        fontWeight:'bold',
+        fontFamily:'Futura-Bold',
+      },
+      categoryItem: {
+        backgroundColor: "transparent",
+        width: 130,
+        height: 80,
+        shadowOffset: {
+          height: 100,
+          width: 100
+        },
+        left: 10
+      },
+      searchView: {
+        position: "relative",
+        backgroundColor: "#fff",
+        flex: 1,
+        width: "100%",
+        height: 1536,
+      },
+      searchBarView: {
+        position: "relative",
+        width: 418,
+        height: 75,
+      },
+      hepsisubmitText: {
+        color: '#fff',
+        textAlign: 'center',
+        alignContent:'center',
+        top:-3,
+        fontWeight: 'bold',
+        fontFamily:'Futura-Bold',
+        alignItems:'center',
+        alignSelf:'center',
+        right:10,
+        fontSize: 15,
+      },
+      hepsilinearsubmitText: {
+        color: '#fff',
+        textAlign: 'center',
+        alignContent:'center',
+        fontFamily:'Futura-Bold',
+        alignItems:'center',
+        alignSelf:'center',
+        fontWeight: 'bold',
+        fontSize: 15,
+      },
+      textInput: {
+        position: "relative",
+        top: -15,
+        marginLeft:10,
+        marginRight:10,
+        borderRadius: 35,
+        backgroundColor: "#fff",
+        shadowRadius: 6,
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        elevation: 6,
+        shadowOpacity: 0.5,
+        width: Dimensions.get('window').width - 25,
+        height: 55,
+        textAlign: 'center',
+        fontSize: 15,
+        fontFamily: 'Futura-Bold'
+      },
+      tourCard: {
         position: "relative",
         width: 380,
         height: 200,
         flexShrink: 0,
       },
-    container:{
-        left:17,
-        
-    },
-    webView: {
-        top: 30,
-        backgroundColor:'transparent',
-        width: 10,
-        left: -10,
+      container: {
+        left: 17,
+        opacity: 0.99
+      },
+      webView: {
+        top: 80,
+        width: 130,
+        left: Dimensions.get('window').width / 2 - 220,
         height: 150,
         opacity: 0.99
-    },
-    titleText: {
+      },
+      titleText: {
         position: "absolute",
         top: 0,
         left: Dimensions.get('screen').width / 2 - 220,
-        fontSize: 18,
+        fontSize:  Dimensions.get('screen').width  < 400 || Dimensions.get('window').height < 750 ? 17 : 22,
         color: "#000",
         textAlign: "left",
         fontFamily: "Futura-Bold",
         fontWeight: 'bold',
         display: "flex",
-        width:144,
-    },
-    textContent: {
+        width:124,
+      },
+      textContent: {
         position: "absolute",
-        backgroundColor:'transparent',
         top: 7,
-        left: 235,
-        width: Dimensions.get('window').width - 20,
+        left: 220,
         height: 181,
-    },
-    backgroundRectangle: {
+      },
+      backgroundRectangle: {
         position: "absolute",
         top: 0,
         left: 0,
@@ -191,26 +383,26 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 25,
         borderBottomLeftRadius: 25,
         backgroundColor: '#fff',
-        shadowColor: "rgba(0, 0, 0, 90)",
+        shadowColor: "rgba(0, 0, 0, 0.5)",
         shadowOffset: {
-            width: 0,
-            height:7,
+          width: 0,
+          height: 2,
         },
-        shadowRadius: 5,
+        shadowRadius: 6,
         elevation: 15,
-        shadowOpacity: 0.2,
+        shadowOpacity: 10,
         width: Dimensions.get('window').width - 30,
         height: 200,
-    },
-    photo: {
+      },
+      photo: {
         position: "absolute",
         top: 0,
         left: 0,
         borderTopLeftRadius: 25,
         borderTopRightRadius: 50,
         borderBottomLeftRadius: 25,
-        width: Dimensions.get('window').width / 2,
+        width: Dimensions.get('window').width / 2 - 10,
         height: 200,
-    },
+      },
 });
 export default Tours

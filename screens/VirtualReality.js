@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native";
 import { render } from "react-dom";
 import Icon from 'react-native-vector-icons/Ionicons';
+import I18n from "i18n-js";
 const VirtualReality = ({route}) => {
 
     const [loading,setLoading] = useState(true)
@@ -19,31 +20,9 @@ const VirtualReality = ({route}) => {
           });
           return unsubscribe 
     }, [navigation,index])
-    const nextPhoto = () => {
-      setIndex((prevState) => prevState + 1);
-      setUrl(`https://kastamonutravelguide.com/en/3dviever?imagename=${images[index].filename}&id=${route.params?.itemid}`)
-    }
-    const prevPhoto = () => {
-      setIndex(index - 1)
-      setUrl(`http://kastamonutravelguide.com/en/3dviever?imagename=${images[index].filename}&id=${route.params?.itemid}`)
-    }
+
     return(
         <View style={{position:'absolute'}}>
-           <View style={styles.topbarView}>
-        <View style={styles.rectangleView} />
-        <Text style={styles.titleText}>{route.params?.itemtitle.substring(0,10)}...({index}/{images.length -1 })</Text>
-        <Pressable
-            style={styles.goBack}
-            onPress={() => navigation.goBack()}
-        >
-            <Image
-                style={styles.goBackIcon}
-                source={require("../assets/goBack.png")}
-                resizeMode="cover"
-            />
-        </Pressable>
-        
-        </View>
         <WebView
         startInLoadingState={true}
         javaScriptEnabled={true}
@@ -52,17 +31,10 @@ const VirtualReality = ({route}) => {
         overScrollMode='never'
         containerStyle={{opacity:0.99,width:Dimensions.get('window').width,height:Dimensions.get('window').height}}
       />
-      <View style={{position:'absolute',top:Dimensions.get('window').height - 100,left:30,display:index === 0 ? 'none' : 'flex'}}>
-        <TouchableHighlight onPress={() => prevPhoto()} underlayColor='transparent'>
-            <View style={{backgroundColor:'white',width:50,height:50,borderRadius:40}}>
-            <Icon  name="arrow-undo-outline" size={34} style={{left:6,top:3}}/>
-            </View>
-        </TouchableHighlight>
-      </View>
-      <View style={{position:'absolute',top:Dimensions.get('window').height - 100,left:Dimensions.get('window').width - 80,display:index === images.length -1 ? 'none' : 'flex'}}>
-        <TouchableHighlight underlayColor='transparent' onPress={() => nextPhoto()}>
-            <View style={{backgroundColor:'white',width:50,height:50,borderRadius:40}}>
-                <Icon  name="arrow-redo-outline" size={34} style={{left:10,top:3}}/>
+      <View style={{position:'absolute',left:Dimensions.get('screen').width - 100}}>
+        <TouchableHighlight onPress={() => navigation.goBack()} underlayColor='transparent'>
+            <View style={{backgroundColor:'white',width:80,height:50,borderRadius:10}}>
+            <Text style={{textAlign:'center',fontFamily:'Futura-Bold',fontSize:14,top:13,fontWeight:'bold'}}>{I18n.t('geriDon')}</Text>
             </View>
         </TouchableHighlight>
       </View>

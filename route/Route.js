@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {NavigationContainer} from '@react-navigation/native'
 import React from 'react';
-import { Image,StyleSheet,View,Text, Dimensions } from 'react-native';
+import { Image,StyleSheet,View,Text, Dimensions, SafeAreaView } from 'react-native';
 import Anasayfa from '../screens/Anasayfa';
 import { createNativeStackNavigator,ImageBackground } from "@react-navigation/native-stack";
 import Harita from '../screens/Harita';
@@ -22,16 +22,16 @@ const Router = () => {
         return (
             <Navigator screenOptions={screenOption}>
             <Screen name='Anasayfa' component={Anasayfa} options={{
-                tabBarIcon: ({ focused }) => <Image style={focused ? styles.focusedIcon :styles.icon} source={focused ? require('../assets/homeFocus.png') : require('../assets/home.png')}/>
+                tabBarIcon: ({ focused }) => <Image style={focused ? styles.homeFocusedIcon :styles.icon} source={focused ? require('../assets/homeFocus.png') : require('../assets/home.png')}/>
             }}/>{
             <Screen name='Harita' component={Harita}options={{
-                tabBarIcon: ({ focused }) => <Image style={focused ? styles.focusedIcon :styles.icon} source={focused ? require('../assets/mapFocus.png') : require('../assets/map.png')}/>
+                tabBarIcon: ({ focused }) => <Image style={focused ? styles.mapFocusedIcon :styles.icon} source={focused ? require('../assets/mapFocus.png') : require('../assets/map.png')}/>
             }}/>}
             <Screen name='Kategoriler' component={Kategori}options={{
-                tabBarIcon: ({ focused }) => <Image style={focused ? styles.focusedIcon :styles.icon} source={focused ? require('../assets/categoryFocus.png') : require('../assets/category.png')}/>
+                tabBarIcon: ({ focused }) => <Image style={focused ? styles.catFocusedIcon :styles.icon} source={focused ? require('../assets/categoryFocus.png') : require('../assets/category.png')}/>
             }}/>
             <Screen name='Favoriler' component={Favoriler}options={{
-                tabBarIcon: ({ focused }) => <Image style={focused ? styles.focusedIcon :styles.icon} source={focused ? require('../assets/favoritesFocus.png') : require('../assets/favorites.png')}/>
+                tabBarIcon: ({ focused }) => <Image style={focused ? styles.favFocusedIcon :styles.icon} source={focused ? require('../assets/favoritesFocus.png') : require('../assets/favorites.png')}/>
             }}/>
         </Navigator>
         );
@@ -50,11 +50,12 @@ const Router = () => {
             tabBarVisible: false
         },
         tabBarBackground:() =>(
-            <LinearGradient  colors={['#5AC7D5',  '#45915B']} style={{height:Dimensions.get('screen').width /2 - 100 ,borderTopLeftRadius:15,borderTopRightRadius:15}}/>
+            <LinearGradient  colors={['#5AC7D5',  '#45915B']} style={{height:70,borderTopLeftRadius:15,borderTopRightRadius:15}}/>
           )
          
     }
     return (
+      
         <NavigationContainer >
                   <Stack.Navigator screenOptions={{detachInactiveScreens: true,tabBarVisible:true}}  initialRouteName='SplashScreen'>
         <Stack.Screen
@@ -100,12 +101,29 @@ const Router = () => {
         />
           </Stack.Navigator>
         </NavigationContainer>
+        
     )
 }
 const styles = StyleSheet.create({
-  focusedIcon:{
-    height:60,
-    width:60
+  homeFocusedIcon:{
+    top: 3,
+    height:68,   
+    width:65
+  },
+  mapFocusedIcon:{
+    top: 3,
+    height:70,   
+    width:65
+  },
+  catFocusedIcon:{
+    top:2,
+    height:70,   
+    width:67
+  },
+  favFocusedIcon:{
+    top: 3,
+    height:68,   
+    width:65
   },
     icon:{
         height:50,

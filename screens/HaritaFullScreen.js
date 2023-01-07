@@ -101,28 +101,32 @@ Linking.openURL(url);
           >
             {list.map((element, index) => {
             
-            return (
-              <Marker
-                key={element.id}
-                coordinate={{ latitude: parseFloat(element.latitude), longitude: parseFloat(element.longtitude) }}
-                image={require("../assets/marker.png")} 
-                
-                onPress={() => setDetails(element.id)}
-                style={{position:'relative'}}
-                >
-                   
-                   <Callout  onPress={element.detailview == 1 ? () => navigation.navigate({ name: 'ItemDetail', params: { itemtitle: element.title, itemcontent: element.content,longitude:element.longtitude,latitude:element.latitude,itemphone: element.phone,itemAttachment:element.attachmentList,youtube: element.youtube,address: element.additional,itemid:element.id,aciliskapanis: element.acilis + ' / ' + element.kapanis  } }): () => goToMap(element.latitude,element.longtitude,element.title) }>
-                 
-                    <View style={{flex:1}}>
-                    <Text style={{fontFamily:'Futura-Bold',fontWeight:'bold',paddingRight:40}}>{element.title}</Text>
-                    <Icon style={{right:1,position:'absolute',justifyContent:'flex-end'}} name="information-circle-outline" size={20}/>
-                    </View>
-                   
-                  </Callout>
-                  
-                </Marker>
+            if(element.latitude !== null){
 
-            )
+            
+              return (
+                <Marker
+                  key={element.id}
+                  coordinate={{ latitude: parseFloat(element.latitude), longitude: parseFloat(element.longtitude) }}
+                  style={{position:'relative'}}
+                  image={require("../assets/marker.png")} 
+                  
+                  onPress={() => setDetails(element.id)}
+                  >
+                     
+                     <Callout  onPress={element.detailview == 1 ? () => navigation.navigate({ name: 'ItemDetail', params: { itemtitle: element.title, itemcontent: element.content,longitude:element.longtitude,latitude:element.latitude,itemphone: element.phone,itemAttachment:element.attachmentList,youtube: element.youtube,address: element.additional,itemid:element.id,aciliskapanis: element.acilis + ' / ' + element.kapanis  } }): () => goToMap(element.latitude,element.longtitude,element.title) }>
+                   
+                      <View style={{flex:1}}>
+                      <Text style={{fontFamily:'Futura-Bold',fontWeight:'bold',paddingRight:40}}>{element.title}</Text>
+                      <Icon style={{right:1,position:'absolute',justifyContent:'flex-end'}} name="information-circle-outline" size={20}/>
+                      </View>
+                     
+                    </Callout>
+                    
+                  </Marker>
+  
+              )
+            }
           })}
         </MapView>
       </View>

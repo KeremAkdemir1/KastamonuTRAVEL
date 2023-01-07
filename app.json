@@ -2,7 +2,7 @@
   "expo": {
     "name": "Kastamonu Travel Guide",
     "slug": "KastamonuTravel",
-    "version": "2.0.1",
+    "version": "2.0.9",
     "orientation": "portrait",
     "icon": "./assets/icon.jpg",
     "userInterfaceStyle": "light",
@@ -13,9 +13,13 @@
       "**/*"  
     ],
     "ios": {
-      "buildNumber": "7",
+      "buildNumber": "20",
       "supportsTablet": true,
       "bundleIdentifier": "com.kastamonubelediyesi.KastamonuTravel",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Bu uygulama harita sayfasında sizi popüler konumlara götürmek için konumunuzu kullanır",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Bu uygulama harita sayfasında sizi popüler konumlara götürmek için konumunuzu kullanır"
+      },
       "config": {
         "googleMapsApiKey": "AIzaSyBsPB8U5HIe2GG2uDB88tpEhMyWRsBLy24" 
       }
@@ -27,7 +31,7 @@
           "apiKey": "AIzaSyBsPB8U5HIe2GG2uDB88tpEhMyWRsBLy24"
           }    
        },
-      "versionCode": 18,
+      "versionCode": 30,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#46d9bf"

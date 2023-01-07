@@ -98,7 +98,7 @@ const PopularPost = () => {
                     <Text style={styles.titleText}>
                          {item.title.substring(0,20)}...
                     </Text>
-                    <Text style={{top:20,left:10,fontSize:Dimensions.get('window').width > 410 ? 11 : 10,fontFamily:'sans-serif-condensed'}}>{item.smallcontent === null ? item.smallcontent : item.smallcontent.substring(0,30)}...</Text>
+                    <Text style={{top:20,left:10,fontSize:Dimensions.get('window').width > 410 ? 16 : 14,fontFamily:'sans-serif-condensed'}}>{item.smallcontent === null ? item.smallcontent : item.smallcontent.substring(0,30)}...</Text>
                 </View>
                 <Image
                     style={styles.thumbPhoto}
